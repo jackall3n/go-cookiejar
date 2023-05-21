@@ -45,3 +45,12 @@ func (jar *CookieJar) All() map[*url.URL][]*http.Cookie {
 
 	return cookies
 }
+
+func ParseString(cookie string) []*http.Cookie {
+	header := http.Header{}
+	header.Add("Cookie", cookie)
+
+	request := http.Request{Header: header}
+
+	return request.Cookies()
+}
